@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Setter
@@ -26,10 +27,10 @@ public class Account implements Serializable {
 
     @Column(name = "created_time", nullable = false, updatable = false)
     @CreatedDate
-    private Instant createdTime;
+    private Timestamp createdTime;
 
     @Column(name = "updated_time", nullable = false)
     @LastModifiedDate
-    private Instant updatedTime;
+    private Timestamp updatedTime;
 }
 

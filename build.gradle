@@ -34,6 +34,10 @@ dependencies {
 
     // json
     implementation 'com.alibaba:fastjson:1.2.76'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names'
+
 
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
