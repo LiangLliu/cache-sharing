@@ -1,6 +1,5 @@
-package com.edwin.cache.repository;
+package com.edwin.cache.user;
 
-import com.edwin.cache.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;

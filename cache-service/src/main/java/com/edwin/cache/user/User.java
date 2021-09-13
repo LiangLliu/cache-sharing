@@ -1,4 +1,4 @@
-package com.edwin.cache.domain;
+package com.edwin.cache.user;
 
 import lombok.*;
 

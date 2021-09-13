@@ -27,7 +27,7 @@
 
   ``` 
               
-  * com.edwin.cache.domain.User
+  * com.edwin.cache.user.User
   ```java
   package com.edwin.cache.domain;
   

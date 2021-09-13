@@ -1,7 +1,5 @@
-package com.edwin.cache.service;
+package com.edwin.cache.user;
 
-import com.edwin.cache.domain.User;
-import com.edwin.cache.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

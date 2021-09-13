@@ -1,7 +1,5 @@
-package com.edwin.cache.controller;
+package com.edwin.cache.user;
 
-import com.edwin.cache.domain.User;
-import com.edwin.cache.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
