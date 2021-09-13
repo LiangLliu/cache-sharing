@@ -1,4 +1,4 @@
-package com.edwin.cache.config;
+package com.edwin.cache.common.cache.config;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.edwin.cache.config;
+package com.edwin.cache.common.cache.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

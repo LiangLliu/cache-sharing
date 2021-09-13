@@ -1,6 +1,6 @@
-package com.edwin.cache.config;
+package com.edwin.cache.common.cache.config;
 
-import com.edwin.cache.manager.DemoCacheManager;
+import com.edwin.cache.common.cache.manager.DemoCacheManager;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;

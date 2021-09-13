@@ -1,6 +1,6 @@
-package com.edwin.cache.manager;
+package com.edwin.cache.common.cache.manager;
 
-import com.edwin.cache.config.RedisConfiguration;
+import com.edwin.cache.common.cache.config.RedisConfiguration;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;

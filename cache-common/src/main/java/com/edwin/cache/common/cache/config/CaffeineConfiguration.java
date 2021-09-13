@@ -1,4 +1,4 @@
-package com.edwin.cache.config;
+package com.edwin.cache.common.cache.config;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

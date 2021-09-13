@@ -1,6 +1,6 @@
-package com.edwin.cache.config;
+package com.edwin.cache.common.cache.config;
 
-import com.edwin.cache.manager.DemoCacheManager;
+import com.edwin.cache.common.cache.manager.DemoCacheManager;
 import io.lettuce.core.event.connection.ConnectionActivatedEvent;
 import io.lettuce.core.event.connection.ConnectionDeactivatedEvent;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +25,7 @@ public class RedisConfiguration {
         REDIS_ACTIVE = redisActive;
     }
 
-
     private final LettuceConnectionFactory lettuceConnectionFactory;
-
 
     @Lazy
     private final DemoCacheManager demoCacheManager;

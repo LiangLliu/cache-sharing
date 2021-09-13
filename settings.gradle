@@ -1,0 +1,6 @@
+rootProject.name = 'cache-demo'
+
+// 其中 cache-account 和 cache-service 依赖 cache-common
+include 'cache-common'
+include 'cache-account'
+include 'cache-service'
