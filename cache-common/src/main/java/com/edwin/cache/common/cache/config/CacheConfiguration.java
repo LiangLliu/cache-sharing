@@ -1,5 +1,6 @@
 package com.edwin.cache.common.cache.config;
 
+import com.edwin.cache.common.cache.jdk.DemoJdkSerializationRedisSerializer;
 import com.edwin.cache.common.cache.manager.DemoCacheManager;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -42,31 +43,34 @@ public class CacheConfiguration extends CachingConfigurerSupport {
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
 
-
         //JSON序列化配置
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-        //hash的value序列化方式采用jackson
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
+//
+//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+//        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+//        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+//
+//        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+//        template.setValueSerializer(jackson2JsonRedisSerializer);
 
 
         //     fastjson
 //        ParserConfig.getGlobalInstance().setSafeMode(false);
 //        FastJsonRedisSerializer<?> serializer = new FastJsonRedisSerializer<>(Object.class);
+//        FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<>(Object.class);
 //        template.setValueSerializer(serializer);
 //        template.setHashKeySerializer(serializer);
-//        template.afterPropertiesSet();
 
         //     JsonRedisSerializer
 //        template.setValueSerializer(new JsonRedisSerializer());
 //        template.setHashKeySerializer(new JsonRedisSerializer());
 
-        return template;
+        template.setValueSerializer(new DemoJdkSerializationRedisSerializer());
+        template.setHashValueSerializer(new DemoJdkSerializationRedisSerializer());
 
+        template.afterPropertiesSet();
+        return template;
     }
 
 
@@ -77,7 +81,6 @@ public class CacheConfiguration extends CachingConfigurerSupport {
         CaffeineCacheManager caffeineCacheManager = createCaffeineCacheManager();
         return new DemoCacheManager(redisCacheManager, caffeineCacheManager);
     }
-
 
     private CaffeineCacheManager createCaffeineCacheManager() {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();

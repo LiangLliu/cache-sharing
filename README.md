@@ -115,3 +115,37 @@ map.put("com.edwin.cache.account.User","com.edwin.cache.user.User")
       放进实例化对象中，这时候涉及到类加载，在account上下文中并没有com.edwin.cache.user.User的对象，因此会挂掉。
     * 转换时并不知道是哪个对象在获取缓存
 
+### 方案2
+* 如同方案1也配置一个map关系
+* 对redis存储的数据反序列化时，尝试类加载，如果不能加载该类，那么通过加载 map.get(key)的值，尝试类加载，如果失败，走原来的，如果成功，
+  替换原来的序列化类加载路径
+* RedisSerializer 默认使用 JdkSerializationRedisSerializer
+  * JdkSerializationRedisSerializer 默认会使用 org.springframework.core.serializer.support.SerializingConverter 和
+    org.springframework.core.serializer.support.DeserializingConverter, 我们只需要关注反序列化器
+  * DeserializingConverter 中 会使用 org.springframework.core.ConfigurableObjectInputStream
+  * ConfigurableObjectInputStream 中有一个 resolveClass方法，我们只需要继承这个类并且把整个方法重写, 就可以按照需求加载对应的类
+  ```java
+  public class DemoObjectInputStream extends ConfigurableObjectInputStream {
+      @Override
+      protected Class<?> resolveClass(ObjectStreamClass classDesc) throws IOException, ClassNotFoundException {
+  
+          String name = classDesc.getName();
+          System.out.println(name);
+  
+          Map<String, String> map = new HashMap<>();
+          map.put("com.edwin.cache.account.User", "com.edwin.cache.user.User");
+          map.put("com.edwin.cache.user.User", "com.edwin.cache.account.User");
+  
+          if (!ClassUtils.isPresent(name, classLoader)) {
+              String className = map.get(name);
+              if (!ObjectUtils.isEmpty(className) && ClassUtils.isPresent(className, classLoader)) {
+                  return ClassUtils.forName(className, this.classLoader);
+              }
+          }
+  
+          return super.resolveClass(classDesc);
+      }
+  }
+
+  ```
+  * 
