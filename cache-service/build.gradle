@@ -3,11 +3,5 @@ repositories {
 }
 
 dependencies {
-    // mysql
-    runtimeOnly 'mysql:mysql-connector-java'
-
-    // flyway
-    implementation 'org.flywaydb:flyway-core'
-
     implementation project(':cache-common')
 }

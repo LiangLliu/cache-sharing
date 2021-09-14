@@ -148,4 +148,63 @@ map.put("com.edwin.cache.account.User","com.edwin.cache.user.User")
   }
 
   ```
-  * 
+### 测试
+分别启动服务 cache-service 和 cache-account
+* 通过测试可以拿到相同的结果
+* 访问 http://localhost:8080/user
+```shell
+curl http://localhost:8080/user | python -m json.too
+```
+```json
+[
+    {
+        "id": 1,
+        "password": "111111",
+        "username": "\u5f20\u4e09"
+    },
+    {
+        "id": 2,
+        "password": "222222",
+        "username": "\u674e\u56db"
+    },
+    {
+        "id": 3,
+        "password": "333333",
+        "username": "\u738b\u4e94"
+    },
+    {
+        "id": 4,
+        "password": "444444",
+        "username": "\u7530\u516d"
+    }
+]
+```
+
+* 访问 http://localhost:8090/account
+```shell
+curl http://localhost:8090/account | python -m json.tool
+```
+```json
+[
+    {
+        "id": 1,
+        "password": "111111",
+        "username": "\u5f20\u4e09"
+    },
+    {
+        "id": 2,
+        "password": "222222",
+        "username": "\u674e\u56db"
+    },
+    {
+        "id": 3,
+        "password": "333333",
+        "username": "\u738b\u4e94"
+    },
+    {
+        "id": 4,
+        "password": "444444",
+        "username": "\u7530\u516d"
+    }
+]
+``` 
